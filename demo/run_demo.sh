@@ -1,16 +1,20 @@
 #### install package locally
 #!/bin/bash
 
+DEMO_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
 quick=true # set to false to install all dependencies
 
 if [ $quick = true ]; then
-	cd ~/Desktop/n8n-nodes-python/
+	cd DEMO_DIR
+	cd ../
 	yarn run build
-	cd ~/Desktop/n8n-nodes-python/demo/
+	cd DEMO_DIR
 	yarn run start
 else
 	# go to package root
-	cd ~/Desktop/n8n-nodes-python/
+	cd DEMO_DIR
+	cd ../
 	# Install package dependencies
 	yarn install
 	# Build the package locally
@@ -21,7 +25,7 @@ else
 	# yarn install && yarn build && yarn link
 	#### --------------------------------------------------
 	# run n8n locally
-	cd ~/Desktop/n8n-nodes-python/demo/
+	cd DEMO_DIR
 	yarn install
 	yarn link "n8n-nodes-python"
 	# yarn add n8n-nodes-python
