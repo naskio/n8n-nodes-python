@@ -3,18 +3,20 @@
 
 DEMO_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
+echo DEMO_DIR: $DEMO_DIR
+
 quick=true # set to false to install all dependencies
 
 if [ $quick = true ]; then
-	cd DEMO_DIR
-	cd ../
+	cd ${DEMO_DIR}/
+	cd ./../
 	yarn run build
-	cd DEMO_DIR
+	cd ${DEMO_DIR}/
 	yarn run start
 else
 	# go to package root
-	cd DEMO_DIR
-	cd ../
+	cd ${DEMO_DIR}/
+	cd ./../
 	# Install package dependencies
 	yarn install
 	# Build the package locally
@@ -25,7 +27,7 @@ else
 	# yarn install && yarn build && yarn link
 	#### --------------------------------------------------
 	# run n8n locally
-	cd DEMO_DIR
+	cd ${DEMO_DIR}/
 	yarn install
 	yarn link "n8n-nodes-python"
 	# yarn add n8n-nodes-python
