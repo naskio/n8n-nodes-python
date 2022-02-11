@@ -11,3 +11,5 @@ yarn.lock
 *.tmp
 
 .idea/
+
+coverage/

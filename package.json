@@ -1,12 +1,12 @@
 {
   "name": "n8n-nodes-python",
   "version": "0.1.0",
-  "description": "Python Function module for n8n.",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "homepage": "https://n8n.io",
+  "description": "Run Python on n8n.",
+  "license": "LICENSE.md",
+  "homepage": "https://github.com/naskio/n8n-nodes-python",
   "author": {
     "name": "Mehdi Nassim KHODJA",
-    "email": "hi@nask.io"
+    "email": "contact@nask.io"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
     "lintfix": "tslint --fix -p tsconfig.json -c tslint.json",
     "nodelinter": "nodelinter",
     "watch": "tsc --watch",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "demo": "./demo/run_demo.sh"
   },
   "files": [
     "dist"
@@ -48,8 +50,7 @@
   },
   "dependencies": {
     "n8n-core": "~0.101.0",
-    "tempy": "1.0.1",
-    "vm2": "^3.9.7"
+    "tempy": "1.0.1"
   },
   "jest": {
     "transform": {
