@@ -54,7 +54,7 @@ If using docker, add the following line to your `Dockerfile`:
 
 ```shell
 # Install n8n-nodes-python module
-RUN cd /usr/local/lib/node_modules/n8n && npm install n8n-nodes-weather
+RUN cd /usr/local/lib/node_modules/n8n && npm install n8n-nodes-python
 ```
 
 Read more about the installation process in
