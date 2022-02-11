@@ -1,4 +1,4 @@
-const { src, dest } = require('gulp');
+const {src, dest} = require('gulp');
 
 function copyIcons() {
 	src('nodes/**/*.{png,svg}')
