@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "n8n-core": "~0.101.0",
+    "tempy": "1.0.1",
     "vm2": "^3.9.7"
   },
   "jest": {

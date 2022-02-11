@@ -29,6 +29,7 @@ else
 	# run n8n locally
 	cd ${DEMO_DIR}/
 	yarn install
+	yarn unlink "n8n-nodes-python"
 	yarn link "n8n-nodes-python"
 	# yarn add n8n-nodes-python
 	yarn run start
