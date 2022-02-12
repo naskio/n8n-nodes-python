@@ -4,14 +4,16 @@
 
 PythonFunction module - custom node for running python code on n8n.
 
-## Python Function
+> run python code on n8n
 
-The Function node is used to run custom snippets in Python to transform data from the other nodes or if you want to
-implement some custom functionality that n8n does not support yet.
+# Python Function
 
-## Installation
+PythonFunction node is used to run custom Python snippets to transform data or to implement some custom functionality
+that n8n does not support yet.
 
-### Using n8n-python Docker Image (Recommended)
+# Installation
+
+## Using n8n-python Docker Image (Recommended)
 
 This node is pre-installed in
 the [n8n-python](https://github.com/naskio/docker-n8n-python) [docker image](https://hub.docker.com/r/naskio/n8n-python)
@@ -22,15 +24,17 @@ the [n8n-python](https://github.com/naskio/docker-n8n-python) [docker image](htt
 
 > Example using [docker-compose.yml](https://github.com/naskio/docker-n8n-python/blob/main/demo/docker-compose-local.yml)
 
+## Adding external packages
+
 You can mount a `requirements.txt` file to the container to install additional packages.
 
 You can use the [ExecuteCommand](https://n8n.io/integrations/n8n-nodes-base.executeCommand) node to
 run `pip install -r requirements.txt`
 and the [n8nTrigger](https://n8n.io/integrations/n8n-nodes-base.n8nTrigger) node to trigger it after each **restart**.
 
-### Locally
+## Install Locally (Not Recommended)
 
-#### Requirements
+### 1- Install Requirements
 
 This node requires the following dependencies to be installed in your environment:
 
@@ -45,7 +49,7 @@ This node requires the following dependencies to be installed in your environmen
 	pip install fire
 	```
 
-#### Installation
+### 2- Add n8n-nodes-python to your n8n instance
 
 If you’re running either by installing it globally or via PM2, make sure that you install `n8n-nodes-python` inside n8n.
 n8n will find the module and load it automatically.
@@ -61,7 +65,7 @@ Read more about the installation process in
 the [n8n documentation - Use the n8n-nodes-module in production](https://docs.n8n.io/nodes/creating-nodes/create-n8n-nodes-module.html#use-the-n8n-nodes-module-in-production)
 .
 
-## Usage
+# Usage
 
 This node receives `ìtems` and should return a list of `items`.
 
@@ -79,7 +83,7 @@ return new_items # should return a list
 > You can access the values directly without the `json` attribute.
 > You don't need to put the item in a `json` attribute. it will be done automatically.
 
-### Variable: items
+## Variable: items
 
 the `items` variable is a list of items that are passed to the function. They are directly accessible in the function.
 
@@ -91,7 +95,7 @@ print(items)
 return items
 ```
 
-### Credentials: env_vars
+## Credentials: env_vars (optional)
 
 You can specify environment variables to be used in the python code. The environment variables are accessible throw
 the `env_vars` dict.
@@ -104,7 +108,7 @@ print(env_vars.get('MY_VAR','default_value'))
 # > dict
 ```
 
-### Logging
+## Logging to the browser console
 
 it is possible to write to the browser console by writing to `stdout`
 
@@ -117,7 +121,7 @@ import sys
 sys.stdout.write('Hello World')
 ```
 
-## Notes
+# Notes
 
 - `stderr`is used for passing data between nodes.
 
