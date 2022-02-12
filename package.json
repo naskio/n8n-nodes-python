@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-python",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Run Python on n8n.",
   "license": "LICENSE.md",
   "homepage": "https://github.com/naskio/n8n-nodes-python",
