@@ -2,16 +2,33 @@
   "name": "n8n-nodes-python",
   "version": "0.1.1",
   "description": "Run Python on n8n.",
-  "license": "LICENSE.md",
+  "license": "Apache 2.0 with Commons Clause",
   "homepage": "https://github.com/naskio/n8n-nodes-python",
   "author": {
     "name": "Mehdi Nassim KHODJA",
-    "email": "contact@nask.io"
+    "email": "contact@nask.io",
+    "url": "https://nask.io"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/naskio/n8n-nodes-python.git"
   },
+  "keywords": [
+    "n8n",
+    "nodemation",
+    "nodes",
+    "custom",
+    "module",
+    "development",
+    "python",
+    "python3",
+    "python3.10",
+    "python function",
+    "function",
+    "code",
+    "custom code",
+    "script"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "npm run watch",
