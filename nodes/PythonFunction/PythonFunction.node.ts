@@ -6,7 +6,7 @@ import {
 	INodeTypeDescription,
 	NodeOperationError,
 } from 'n8n-workflow';
-import {exec, spawn} from 'child_process';
+import {spawn} from 'child_process';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as tempy from 'tempy';
@@ -150,35 +150,6 @@ return items
 
 function parseShellOutput(outputStr: string): [] {
 	return JSON.parse(outputStr);
-}
-
-
-function execPythonPromise(scriptPath: string, items: INodeExecutionData[], envVars: object): Promise<IExecReturnData> {
-	// Promisify exec manually to also get the exit code
-	const returnData: IExecReturnData = {
-		error: undefined,
-		exitCode: 0,
-		stderr: '',
-		stdout: '',
-	};
-	const command = `python3 ${scriptPath} --items='${JSON.stringify(items)}' --env_vars='${JSON.stringify(envVars)}'`;
-	return new Promise((resolve, reject) => {
-		exec(command, {cwd: process.cwd()}, (error, stdout, stderr) => {
-			returnData.stdout = stdout.trim();
-			returnData.stderr = stderr.trim();
-			if (error) {
-				returnData.error = error;
-			}
-			resolve(returnData);
-		}).on('exit', code => {
-			returnData.exitCode = code || 0;
-			if (!code) {
-				returnData.items = parseShellOutput(returnData.stderr);
-			} else {
-				returnData.error = new Error(returnData.stderr);
-			}
-		});
-	});
 }
 
 

@@ -2,12 +2,8 @@
 # - NPM_TOKEN
 # + GITHUB_TOKEN (by default)
 
-#name: Build, Release and Publish Package to npmjs
 name: Build and Publish Package to npmjs
-#on:
-#  push:
-#    tags:
-#      - "*.*.*"
+
 on:
   release:
     types: [ published ]
@@ -18,9 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      #      - name: Get the version # get the version from the tag
-      #        id: get_version
-      #        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
       - uses: actions/setup-node@v2 # Setup .npmrc file to publish to npm
         with:
@@ -31,14 +24,3 @@ jobs:
       - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-#      - name: create Release
-#        uses: softprops/action-gh-release@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          #          body_path: ${{ github.workspace }}/CHANGELOG.md
-#          body_path: CHANGELOG.md
-#          files: |
-#            LICENSE.md
-#            CONTRIBUTOR_LICENSE_AGREEMENT.md

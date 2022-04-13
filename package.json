@@ -29,7 +29,6 @@
     "custom code",
     "script"
   ],
-  "main": "index.js",
   "scripts": {
     "dev": "npm run watch",
     "build": "tsc && gulp",

@@ -1,7 +1,6 @@
 {
   "name": "n8n-demo",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "./node_modules/n8n/bin/n8n start"
