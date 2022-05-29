@@ -1,3 +1,3 @@
 # Change Log
 
-- update README.md
+- fix optional credentials issue in recent n8n versions.
