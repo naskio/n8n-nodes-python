@@ -72,7 +72,12 @@ return items
 
 		// Get the python code snippet
 		const functionCode = this.getNodeParameter('functionCode', 0) as string;
-		const pythonEnvVars: Record<string, string> = parseEnvFile(String((await this.getCredentials('pythonEnvVars'))?.envFileContent || ''));
+		// Get the environment variables
+		let pythonEnvVars: Record<string, string> = {};
+		try {
+			pythonEnvVars = parseEnvFile(String((await this.getCredentials('pythonEnvVars'))?.envFileContent || ''));
+		} catch (_) {
+		}
 		let scriptPath = '';
 		try {
 			scriptPath = await getTemporaryScriptPath(functionCode);
