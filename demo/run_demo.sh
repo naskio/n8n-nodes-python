@@ -5,7 +5,7 @@ DEMO_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 echo DEMO_DIR: $DEMO_DIR
 
-quick=true # set to false to install all dependencies
+quick=false # set to false to install all dependencies
 
 if [ $quick = true ]; then
 	cd ${DEMO_DIR}/

@@ -32,7 +32,7 @@ You can use the [ExecuteCommand](https://n8n.io/integrations/n8n-nodes-base.exec
 run `pip install -r requirements.txt`
 and the [n8nTrigger](https://n8n.io/integrations/n8n-nodes-base.n8nTrigger) node to trigger it after each **restart**.
 
-## Install Locally (Not Recommended)
+## Install Locally
 
 ### 1- Install Requirements
 

@@ -79,17 +79,19 @@ return items
 		} catch (_) {
 		}
 		let scriptPath = '';
+		let jsonPath = '';
 		try {
 			scriptPath = await getTemporaryScriptPath(functionCode);
+			jsonPath = await getTemporaryJsonFilePath(unwrapJsonField(items));
 		} catch (error) {
-			throw new NodeOperationError(this.getNode(), `Could not generate temporary python script file: ${error.message}`);
+			throw new NodeOperationError(this.getNode(), `Could not generate temporary files: ${error.message}`);
 		}
 
 
 		try {
 
 			// Execute the function code
-			const execResults = await execPythonSpawn(scriptPath, unwrapJsonField(items), pythonEnvVars, this.sendMessageToUI);
+			const execResults = await execPythonSpawn(scriptPath, jsonPath, pythonEnvVars, this.sendMessageToUI);
 			const {
 				error: returnedError,
 				exitCode,
@@ -158,7 +160,7 @@ function parseShellOutput(outputStr: string): [] {
 }
 
 
-function execPythonSpawn(scriptPath: string, items: IDataObject[], envVars: object, stdoutListener?: CallableFunction): Promise<IExecReturnData> {
+function execPythonSpawn(scriptPath: string, jsonPath: string, envVars: object, stdoutListener?: CallableFunction): Promise<IExecReturnData> {
 	const returnData: IExecReturnData = {
 		error: undefined,
 		exitCode: 0,
@@ -166,7 +168,7 @@ function execPythonSpawn(scriptPath: string, items: IDataObject[], envVars: obje
 		stdout: '',
 	};
 	return new Promise((resolve, reject) => {
-		const child = spawn('python3', [scriptPath, '--items', JSON.stringify(items), '--env_vars', JSON.stringify(envVars)], {
+		const child = spawn('python3', [scriptPath, '--json_path', jsonPath, '--env_vars', JSON.stringify(envVars)], {
 			cwd: process.cwd(),
 			// shell: true,
 		});
@@ -237,6 +239,15 @@ async function getTemporaryScriptPath(codeSnippet: string): Promise<string> {
 	const codeStr = getScriptCode(codeSnippet);
 	// write code to file
 	fs.writeFileSync(tmpPath, codeStr);
+	return tmpPath;
+}
+
+
+async function getTemporaryJsonFilePath(data: object): Promise<string> {
+	const tmpPath = tempy.file({extension: 'json'});
+	const jsonStr = JSON.stringify(data);
+	// write code to file
+	fs.writeFileSync(tmpPath, jsonStr);
 	return tmpPath;
 }
 
